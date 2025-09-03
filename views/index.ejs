@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON → XML Generator</title>
+
+  <link rel="stylesheet" href="./assets/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/bootstrap-5.0.2-dist/css/bootstrap-utilities.min.css">
+
+</head>
+<body class="">
+  <header class="py-3 mb-3 border-bottom">
+    <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+          <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
+          <li><a class="dropdown-item" href="#">Inventory</a></li>
+          <li><a class="dropdown-item" href="#">Customers</a></li>
+          <li><a class="dropdown-item" href="#">Products</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Reports</a></li>
+          <li><a class="dropdown-item" href="#">Analytics</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <form class="w-100 me-3">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid pb-3">
+    <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+      <div class="bg-light border rounded-3">
+        <h1 class="text-center my-3">Generator Config</h1>
+        <form id="generatorForm">
+          <div class="mx-5 my-3">
+            <label class="form-label">Interval Type: </label>
+              <select class="form-select" name="intervalType">
+                <option value="seconds">Seconds</option>
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+              </select>
+           
+          </div>
+            
+            <div class="mx-5 my-3">
+              <label class="form-label">Interval Value: </label>
+                <input class="form-control" type="number" name="intervalValue" value="5">
+            </div>
+            
+
+
+            <div class="mx-5 my-3">
+              <label class="form-label">Start :</label>
+                <input class="form-control" type="time" name="waktuMulai">
+            </div>
+
+            <div class="mx-5 my-3">
+              <label class="form-label">End :</label>
+                <input class="form-control" type="time" name="waktuSelesai">
+            </div>
+
+
+            <div class="mx-5 my-3 mb-5">
+              <label class="form-label">Mappings:</label>
+              <div id="mappingsContainer"></div>
+              <button type="button" class="btn btn-secondary mt-2" id="addMapping">+ Add Mapping</button>
+            </div>
+
+            <!-- <div class="mx-5 my-3">
+              <label>Output Path:</label>
+              <input class="form-control" type="text" name="outputPath" value="C:\\output">
+            </div>
+
+            <div class="mx-5 my-3">
+              <div class="">
+                <label class="form-label">JSON Source:</label>
+              </div>
+                  <select class="form-select" name="jsonSource" id="jsonSource">
+                    <option value="manual">Manual Input</option>
+                    <option value="api">API</option>
+                    <option value="file">File Path</option>
+                  </select>
+            </div>
+
+            <div class="mx-5 my-3" id="manualInput">
+              <label class="form-label">JSON Data:</label>
+              <textarea name="fileJson" rows="6" cols="40" class="form-control">
+        {
+          "election_name": "New Jersey Governor Republican Primary",
+          "year": 2025,
+          "candidates": ["John Doe", "Jane Smith"]
+        }
+              </textarea>
+            </div>
+
+            <div id="apiInput" style="display:none;">
+              <div class="mx-5 my-3">
+                <label class="form-label">API URL:</label>
+                <input type="text" name="apiUrl" class="form-control" placeholder="https://api.example.com/data">
+              </div>
+            </div>
+
+            <div id="fileInput" style="display:none;">
+              <div class="mx-5 my-3">
+                <label class="form-label">File Path:</label>
+                <input type="text" name="filePath" class="form-control" placeholder="C:\\data\\input.json">
+              </div>
+            </div> -->
+
+            <div class="mx-5 my-3">
+              <button type="submit" class="mb-3 btn btn-primary">Start Generator</button>
+            </div>
+           
+          </form>
+           <div class="mx-5 my-3">
+              <button type="" id="stopGenerator" class="btn btn-danger">Stop Generator</button>
+           </div>
+      </div>
+
+      <div class="bg-light border rounded-3 overflow-auto " style="max-height: 800px;">
+        
+        
+        <pre id="logBox" class="rounded-4 bg-black mx-3"></pre>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  
+    
+
+  
+  
+
+  <script>
+   // const jsonSourceSelect = document.getElementById("jsonSource");
+   // const manualInput = document.getElementById("manualInput");
+   // const apiInput = document.getElementById("apiInput");
+   // const fileInput = document.getElementById("fileInput");
+
+    // jsonSourceSelect.addEventListener("change", () => {
+    //   manualInput.style.display = "none";
+    //   apiInput.style.display = "none";
+    //   fileInput.style.display = "none";
+
+    //   if (jsonSourceSelect.value === "manual") manualInput.style.display = "block";
+    //   if (jsonSourceSelect.value === "api") apiInput.style.display = "block";
+    //   if (jsonSourceSelect.value === "file") fileInput.style.display = "block";
+    // });
+
+    const mappingsContainer = document.getElementById("mappingsContainer");
+  const addMappingBtn = document.getElementById("addMapping");
+
+  function createMappingRow() {
+    const div = document.createElement("div");
+    div.className = "row g-2 align-items-center";
+
+    div.innerHTML = `
+      <div class="col">
+        <label class="form-label">Input Path :</label>
+        <input type="text" class="form-control filePath" placeholder="C:\\input\\input.json">
+      </div>
+      <div class="col">
+        <label class="form-label">Output Path :</label>
+        <input type="text" class="form-control outputPath" placeholder="C:\\output">
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-danger btn-sm removeMapping mt-5 mb-3">X</button>
+      </div>
+    `;
+
+    // remove row handler
+    div.querySelector(".removeMapping").addEventListener("click", () => {
+      div.remove();
+    });
+
+    mappingsContainer.appendChild(div);
+  }
+
+  // add first row by default
+  createMappingRow();
+
+  addMappingBtn.addEventListener("click", () => {
+    createMappingRow();
+  });
+
+    
+
+
+
+    document.getElementById("generatorForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const config = {
+        intervalType: form.intervalType.value,
+        intervalValue: Number(form.intervalValue.value),
+        //durationMinutes: Number(form.durationMinutes.value),
+        waktuMulai: form.waktuMulai.value,
+        waktuSelesai: form.waktuSelesai.value,
+     //   jsonSource: form.jsonSource.value,
+      //  outputPath: form.outputPath.value,
+        mappings: []
+      };
+
+      // if (config.jsonSource === "manual") {
+      //   config.fileJson = JSON.parse(form.fileJson.value);
+      // } else if (config.jsonSource === "api") {
+      //   config.apiUrl = form.apiUrl.value;
+      // } else if (config.jsonSource === "file") {
+      //   config.filePath = form.filePath.value;
+      // }
+
+      document.querySelectorAll("#mappingsContainer .row").forEach(row => {
+      const filePath = row.querySelector(".filePath").value.trim();
+      const outputPath = row.querySelector(".outputPath").value.trim();
+      if (filePath && outputPath) {
+        config.mappings.push({ filePath, outputPath });
+      }
+    });
+
+    console.log("Final JSON:",config)
+
+    
+      const res = await fetch("http://localhost:3000/start-generator", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(config),
+      });
+
+      const result = await res.json();
+      alert(JSON.stringify(result, null, 2));
+    });
+
+    document.getElementById("stopGenerator").addEventListener("click", async (e) => {
+    try {
+        const res = await fetch("http://localhost:3000/stop-generator ", {
+            method: "POST"
+        });
+        if (res.ok) {
+            alert("Generator Dihentikan");
+        } else {
+            alert("Gagal menghentikan generator");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Terjadi kesalahan saat menghentikan generator");
+    }
+});
+
+    // 🔥 Real-time log dengan SSE
+    const logBox = document.getElementById("logBox");
+    const eventSource = new EventSource("http://localhost:3000/logs");
+    eventSource.onmessage = (event) => {
+      logBox.textContent += event.data + "\n";
+      logBox.scrollTop = logBox.scrollHeight;
+    };
+  </script>
+</body>
+</html>
