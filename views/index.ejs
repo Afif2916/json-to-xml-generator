@@ -70,6 +70,61 @@
             
 
 
+            <!-- <div class="mx-5 my-3">
+              <label class="form-label">Start :</label>
+                <input class="form-control" type="time" name="waktuMulai">
+            </div>
+
+            <div class="mx-5 my-3">
+              <label class="form-label">End :</label>
+                <input class="form-control" type="time" name="waktuSelesai">
+            </div> -->
+
+
+            <div class="mx-5 my-3 mb-5">
+              <label class="form-label">Mappings:</label>
+              <div id="mappingsContainer"></div>
+              <button type="button" class="btn btn-secondary mt-2" id="addMapping">+ Add Mapping</button>
+            </div>
+
+            <div class="mx-5 my-3">
+              <button type="submit" class="mb-3 btn btn-primary">Start Generator</button>
+            </div>
+           
+          </form>
+           <div class="mx-5 my-3">
+              <button type="" id="stopGenerator" class="btn btn-danger">Stop Generator</button>
+           </div>
+      </div>
+
+      <div class="bg-light border rounded-3 overflow-auto " style="max-height: 800px;">
+        <pre id="logBox" class="rounded-4 bg-black mx-3"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container-fluid pb-3">
+    <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+      <div class="bg-light border rounded-3">
+        <h1 class="text-center my-3">Generator Config</h1>
+        <form id="generatorForm">
+          <div class="mx-5 my-3">
+            <label class="form-label">Interval Type: </label>
+              <select class="form-select" name="intervalType">
+                <option value="seconds">Seconds</option>
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+              </select>
+           
+          </div>
+            
+            <div class="mx-5 my-3">
+              <label class="form-label">Interval Value: </label>
+                <input class="form-control" type="number" name="intervalValue" value="5">
+            </div>
+            
+
+
             <div class="mx-5 my-3">
               <label class="form-label">Start :</label>
                 <input class="form-control" type="time" name="waktuMulai">
@@ -87,47 +142,6 @@
               <button type="button" class="btn btn-secondary mt-2" id="addMapping">+ Add Mapping</button>
             </div>
 
-            <!-- <div class="mx-5 my-3">
-              <label>Output Path:</label>
-              <input class="form-control" type="text" name="outputPath" value="C:\\output">
-            </div>
-
-            <div class="mx-5 my-3">
-              <div class="">
-                <label class="form-label">JSON Source:</label>
-              </div>
-                  <select class="form-select" name="jsonSource" id="jsonSource">
-                    <option value="manual">Manual Input</option>
-                    <option value="api">API</option>
-                    <option value="file">File Path</option>
-                  </select>
-            </div>
-
-            <div class="mx-5 my-3" id="manualInput">
-              <label class="form-label">JSON Data:</label>
-              <textarea name="fileJson" rows="6" cols="40" class="form-control">
-        {
-          "election_name": "New Jersey Governor Republican Primary",
-          "year": 2025,
-          "candidates": ["John Doe", "Jane Smith"]
-        }
-              </textarea>
-            </div>
-
-            <div id="apiInput" style="display:none;">
-              <div class="mx-5 my-3">
-                <label class="form-label">API URL:</label>
-                <input type="text" name="apiUrl" class="form-control" placeholder="https://api.example.com/data">
-              </div>
-            </div>
-
-            <div id="fileInput" style="display:none;">
-              <div class="mx-5 my-3">
-                <label class="form-label">File Path:</label>
-                <input type="text" name="filePath" class="form-control" placeholder="C:\\data\\input.json">
-              </div>
-            </div> -->
-
             <div class="mx-5 my-3">
               <button type="submit" class="mb-3 btn btn-primary">Start Generator</button>
             </div>
@@ -144,7 +158,7 @@
         <pre id="logBox" class="rounded-4 bg-black mx-3"></pre>
       </div>
     </div>
-  </div>
+  </div> -->
 
   
 
@@ -156,36 +170,22 @@
   
 
   <script>
-   // const jsonSourceSelect = document.getElementById("jsonSource");
-   // const manualInput = document.getElementById("manualInput");
-   // const apiInput = document.getElementById("apiInput");
-   // const fileInput = document.getElementById("fileInput");
-
-    // jsonSourceSelect.addEventListener("change", () => {
-    //   manualInput.style.display = "none";
-    //   apiInput.style.display = "none";
-    //   fileInput.style.display = "none";
-
-    //   if (jsonSourceSelect.value === "manual") manualInput.style.display = "block";
-    //   if (jsonSourceSelect.value === "api") apiInput.style.display = "block";
-    //   if (jsonSourceSelect.value === "file") fileInput.style.display = "block";
-    // });
-
-    const mappingsContainer = document.getElementById("mappingsContainer");
+   
+  const mappingsContainer = document.getElementById("mappingsContainer");
   const addMappingBtn = document.getElementById("addMapping");
 
-  function createMappingRow() {
+  function createMappingRow(filePathValue = "", outputPathValue = "") {
     const div = document.createElement("div");
     div.className = "row g-2 align-items-center";
 
     div.innerHTML = `
       <div class="col">
         <label class="form-label">Input Path :</label>
-        <input type="text" class="form-control filePath" placeholder="C:\\input\\input.json">
+        <input type="text" class="form-control filePath" placeholder="C:\\input\\input.json" value="${filePathValue}">
       </div>
       <div class="col">
         <label class="form-label">Output Path :</label>
-        <input type="text" class="form-control outputPath" placeholder="C:\\output">
+        <input type="text" class="form-control outputPath" placeholder="C:\\output" value="${outputPathValue}">
       </div>
       <div class="col-auto">
         <button type="button" class="btn btn-danger btn-sm removeMapping mt-5 mb-3">X</button>
@@ -200,8 +200,9 @@
     mappingsContainer.appendChild(div);
   }
 
-  // add first row by default
-  createMappingRow();
+
+  const filePaths = <%- JSON.stringify(filePaths) %>;
+  filePaths.forEach(p => createMappingRow(p, "\\\\192.168.150.204\\onair_files\\MGN_BOX\\FEED DATA XML"));
 
   addMappingBtn.addEventListener("click", () => {
     createMappingRow();
@@ -242,7 +243,7 @@
       }
     });
 
-    console.log("Final JSON:",config)
+   // console.log("Final JSON:",config)
 
     
       const res = await fetch("http://localhost:3000/start-generator", {
