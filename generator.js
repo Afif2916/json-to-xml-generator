@@ -93,17 +93,17 @@ app.post("/start-generator", async (req, res) => {
   if (timer) clearInterval(timer);
 
   // parse waktuMulai & waktuSelesai (format HH:mm)
-  const [mulaiJam, mulaiMenit] = waktuMulai.split(":").map(Number);
-  const [selesaiJam, selesaiMenit] = waktuSelesai.split(":").map(Number);
+//   const [mulaiJam, mulaiMenit] = waktuMulai.split(":").map(Number);
+//   const [selesaiJam, selesaiMenit] = waktuSelesai.split(":").map(Number);
 
-  const now = new Date();
-  const startTime = new Date(now);
-  startTime.setHours(mulaiJam, mulaiMenit, 0, 0);
+//   const now = new Date();
+//   const startTime = new Date(now);
+//   startTime.setHours(mulaiJam, mulaiMenit, 0, 0);
 
-  const endTime = new Date(now);
-  endTime.setHours(selesaiJam, selesaiMenit, 0, 0);
+//   const endTime = new Date(now);
+//   endTime.setHours(selesaiJam, selesaiMenit, 0, 0);
 
-  addLog(`▶️ Generator dijadwalkan dari ${startTime.toLocaleTimeString()} sampai ${endTime.toLocaleTimeString()}`);
+//   addLog(`▶️ Generator dijadwalkan dari ${startTime.toLocaleTimeString()} sampai ${endTime.toLocaleTimeString()}`);
 
   // 🔹 fungsi bantu: txt → xml
   function txtToXml(txt, fileName) {
