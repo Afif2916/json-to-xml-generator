@@ -264,8 +264,8 @@ app.post("/start-generator", async (req, res) => {
             frequency = frequency.replace(/,/g, ".");
 
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -276,8 +276,8 @@ app.post("/start-generator", async (req, res) => {
     if(name === "phi_top_by_lossby_change"){
         let [kode, nama, harga, jumlah, persentase, hargaClose] = parts
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -293,8 +293,8 @@ app.post("/start-generator", async (req, res) => {
             persentase = persentase.replace(/,/g, ".");
             hargaClose = hargaClose.replace(/,/g, ".");
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -310,8 +310,8 @@ app.post("/start-generator", async (req, res) => {
             hargaClose = hargaClose.replace(/,/g, ".");
 
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -375,8 +375,8 @@ app.post("/start-generator", async (req, res) => {
   //  value = parseValue(value);
 
     xml += `  <rec>\n`;
-    xml += `    <kode dt="string">${kode}</kode>\n`;
-    xml += `    <nama dt="string">${nama}</nama>\n`;
+    xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+    xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
     xml += `    <harga dt="number">${harga}</harga>\n`;
     xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
     xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -393,8 +393,8 @@ app.post("/start-generator", async (req, res) => {
             hargaClose = hargaClose.replace(/,/g, ".");
            // 
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
@@ -409,8 +409,8 @@ app.post("/start-generator", async (req, res) => {
             persentase = persentase.replace(/,/g, ".");
             hargaClose = hargaClose.replace(/,/g, ".");
         xml += `  <rec>\n`;
-            xml += `    <kode dt="string">${kode}</kode>\n`;
-            xml += `    <nama dt="string">${nama}</nama>\n`;
+            xml += `    <kode dt="string">${escapeXml(kode)}</kode>\n`;
+            xml += `    <nama dt="string">${escapeXml(nama)}</nama>\n`;
             xml += `    <harga dt="number">${harga}</harga>\n`;
             xml += `    <jumlah dt="number">${jumlah}</jumlah>\n`;
             xml += `    <persen dt="number">${persentase}</persen>\n`;
